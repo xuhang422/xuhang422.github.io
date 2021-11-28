@@ -11,10 +11,16 @@
         <content type="html"><![CDATA[<p>在云服务器（centos）中通过yum安装node后默认安装版本比较低，不能使hexo进行初始化。</p><h2 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h2><p>先确认系统是否安装过epel-release包</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum info epel-release</span><br></pre></td></tr></table></figure><p>如果有相关已安装的信息，则说明已经安装，如果提示没有安装则执行安装命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release</span><br></pre></td></tr></table></figure><p>安装完成后，就可以使用yum命令安装nodejs了，安装的版本一般默认是6.x的版本，npm（3.x）作为依赖会一起安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install nodejs</span><br></pre></td></tr></table></figure><p>安装完成后，查看版本 node -v ，如果输出如下版本信息则说明安装成功</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v6.13.3</span><br></pre></td></tr></table></figure><h2 id="升级node"><a href="#升级node" class="headerlink" title="升级node"></a>升级node</h2><p>安装n，n是nodejs管理工具</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g n</span><br></pre></td></tr></table></figure><p>安装nodejs最新版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n latest</span><br></pre></td></tr></table></figure><p>若安装指定版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n 10.1.3</span><br></pre></td></tr></table></figure><p>切换nodejs版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n</span><br></pre></td></tr></table></figure><p>选择已安装的版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">   node/10.1.3</span><br><span class="line">o  node/10.15.1</span><br></pre></td></tr></table></figure><p>查看当前版本 node -v 输出如下则切换成功</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v10.15.1</span><br></pre></td></tr></table></figure><h2 id="使用n切换nodejs版本失效解决办法"><a href="#使用n切换nodejs版本失效解决办法" class="headerlink" title="使用n切换nodejs版本失效解决办法"></a>使用n切换nodejs版本失效解决办法</h2><p>查看当前 nodejs 安装路径</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> node</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/node <span class="comment">#我的路径地址</span></span><br></pre></td></tr></table></figure><p>而 n 默认安装路径是 /usr/local，若你的 node 不是在此路径下，n 切换版本就不能把bin、lib、include、share 复制该路径中，所以我们必须通过N_PREFIX变量来修改 n 的默认node安装路径。<br>编辑环境配置文件：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash_profile</span><br></pre></td></tr></table></figure><p>将下面两行代码插入到文件末尾：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> N_PREFIX=/usr/<span class="built_in">local</span> <span class="comment">#node实际安装位置</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$N_PREFIX</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure><p>编辑完成后 esc :wq 保存退出</p><p>执行source使修改生效</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure><p>这时再 node -v 查看版本信息发现切换成功了</p>]]></content>
       
       
+      <categories>
+          
+          <category> 博客 </category>
+          
+      </categories>
+      
       
         <tags>
             
-            <tag> blog </tag>
+            <tag> hexo </tag>
             
         </tags>
       
@@ -26,7 +32,7 @@
     
     
     <entry>
-      <title>tags</title>
+      <title>标签</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
       
@@ -37,7 +43,7 @@
     
     
     <entry>
-      <title>categories</title>
+      <title>分类</title>
       <link href="/categories/index.html"/>
       <url>/categories/index.html</url>
       
