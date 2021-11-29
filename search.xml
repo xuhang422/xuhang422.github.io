@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>基础_学习目标_如何搭建一台linux服务器</title>
+      <link href="/2021/11/29/%E5%9F%BA%E7%A1%80-%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87-%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%80%E5%8F%B0linux%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+      <url>/2021/11/29/%E5%9F%BA%E7%A1%80-%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87-%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%80%E5%8F%B0linux%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<ol><li><p>学习如何安装VMware，并进行产品安装</p></li><li><p>学习如何在VMware中安装CentOS系统（CentOS镜像下载<a href="http://isoredirect.centos.org/centos/7/isos/x86_64/">国外</a> \ <a href="http://mirrors.aliyun.com/centos/7/isos/x86_64/">国内</a>）</p></li><li><p>学习如何使用linux系统的终端（<a href="https://www.runoob.com/linux/linux-tutorial.html">查看教程</a>）</p><ul><li>通过终端在自己的目录下创建一个文件夹test（）</li><li>通过终端在普通用户与root用户之间进行跳转（）</li><li>学习如何在Linux系统的终端中进行文件的查看、复制、移动、删除、创建、编辑</li><li>学习如何通过终端创建用户并修改用户密码</li><li>下载一个新的命令包并使用（以sl为例）</li><li>…（教程中所有的执行代码都要做一遍并理解其中含义，如下图所示）</li></ul><p><img src="img/post/541d59ca9700cb51cd10a0a1e22c8a5.png" alt="图片1"></p><ul><li>查找apt与yum两个命令的区别（可选）</li><li>查找vim编辑器的发展历史（可选）</li></ul></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 日常 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 学习计划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo建立中关于linux的node版本过低问题</title>
       <link href="/2021/11/28/hexo%E5%BB%BA%E7%AB%8B%E4%B8%AD%E5%85%B3%E4%BA%8Elinux%E7%9A%84node%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E9%97%AE%E9%A2%98/"/>
       <url>/2021/11/28/hexo%E5%BB%BA%E7%AB%8B%E4%B8%AD%E5%85%B3%E4%BA%8Elinux%E7%9A%84node%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E9%97%AE%E9%A2%98/</url>
