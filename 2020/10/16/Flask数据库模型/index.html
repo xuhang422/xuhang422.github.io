@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Flask数据库模型 | 进阶笔记</title><meta name="keywords" content="Flask,python"><meta name="author" content="枫语咒,xuhang@yonghongtech.com"><meta name="copyright" content="枫语咒"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SQLAlchemy 是一个基于 Python 实现的 ORM 库，是一种 面对对象 的数据库编程框架 (关系对象映射)。 快速入门文档http:&#x2F;&#x2F;www.pythondoc.com&#x2F;flask-sqlalchemy&#x2F;quickstart.html  安装 1pip install sqlalchemy  在 Flask 项目中的 URI 配置 1234567class Config:	SECR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flask数据库模型">
+<meta property="og:url" content="https://xuhang422.github.io/2020/10/16/Flask%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="进阶笔记">
+<meta property="og:description" content="SQLAlchemy 是一个基于 Python 实现的 ORM 库，是一种 面对对象 的数据库编程框架 (关系对象映射)。 快速入门文档http:&#x2F;&#x2F;www.pythondoc.com&#x2F;flask-sqlalchemy&#x2F;quickstart.html  安装 1pip install sqlalchemy  在 Flask 项目中的 URI 配置 1234567class Config:	SECR">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://121.5.1.207:3000/api/1?rand=24">
+<meta property="article:published_time" content="2020-10-16T02:19:00.000Z">
+<meta property="article:modified_time" content="2021-11-29T13:52:13.361Z">
+<meta property="article:author" content="枫语咒">
+<meta property="article:tag" content="Flask">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://121.5.1.207:3000/api/1?rand=24"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://xuhang422.github.io/2020/10/16/Flask%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%9E%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Flask数据库模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-11-29 21:52:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head3.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://121.5.1.207:3000/api/1?rand=23')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">进阶笔记</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Flask数据库模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-16T02:19:00.000Z" title="发表于 2020-10-16 10:19:00">2020-10-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-29T13:52:13.361Z" title="更新于 2021-11-29 21:52:13">2021-11-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Flask数据库模型"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>SQLAlchemy 是一个基于 Python 实现的 ORM 库，是一种 面对对象 的数据库编程框架 (关系对象映射)。</p>
+<p><strong>快速入门文档</strong><br><a target="_blank" rel="noopener" href="http://www.pythondoc.com/flask-sqlalchemy/quickstart.html">http://www.pythondoc.com/flask-sqlalchemy/quickstart.html</a></p>
+<hr>
+<p><strong>安装</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install sqlalchemy</span><br></pre></td></tr></table></figure>
+
+<p><strong>在 Flask 项目中的 URI 配置</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Config</span>:</span></span><br><span class="line">	SECRET_KEY =<span class="string">&quot;abc_caonima_wocao&quot;</span> <span class="comment"># 随机 SECRET_KEY</span></span><br><span class="line">	SQLALCHEMY_COMMIT_ON_TEARDOWN = <span class="literal">True</span> <span class="comment"># 自动提交</span></span><br><span class="line">	SQLALCHEMY_TRACK_MODIFICATIONS = <span class="literal">True</span> <span class="comment"># 自动sql</span></span><br><span class="line">	</span><br><span class="line">	DEBUG = <span class="literal">True</span> <span class="comment"># debug模式</span></span><br><span class="line">	SQLALCHEMY_DATABASE_URI = <span class="string">&#x27;mysql+pymysql://%s:%s@%s:%s/%s&#x27;</span> % (DB_USERNAME, DB_PASSWORD,DB_HOST, DB_PORT, DB_NAME) <span class="comment">#数据库URL</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>在初始化项目中连接</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app = Flask(__name__,template_folder=<span class="string">&#x27;templates&#x27;</span>,static_folder=<span class="string">&#x27;static&#x27;</span>)</span><br><span class="line">app.config.from_object(Config)</span><br><span class="line"></span><br><span class="line">db = SQLAlchemy(app)</span><br><span class="line">db.init_app(app)</span><br></pre></td></tr></table></figure>
+
+<p>这样就把 数据库 和 Flask实例联系起来了，这里使用 Mysql</p>
+<p><strong>建立数据库模型</strong></p>
+<p>所谓数据库模型，说白了就是建立数据库中所需的具体字段，包括字段名称，类型，限制条件等等</p>
+<p>比如在个人博客中，我们需要有文章列表，也需要有文章详情的数据库模型。</p>
+<p><strong>编写模型对象</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">python</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article</span>(<span class="params">db.Model</span>):</span></span><br><span class="line">	__tablename__ = <span class="string">&#x27;article&#x27;</span></span><br><span class="line">	<span class="built_in">id</span> = db.Column(db.Integer, primary_key=<span class="literal">True</span>)</span><br><span class="line">	title = db.Column(db.String(<span class="number">32</span>))</span><br><span class="line">	author = db.Column(db.String(<span class="number">32</span>))</span><br><span class="line">	img_url = db.Column(db.Text, nullable=<span class="literal">False</span>)</span><br><span class="line">	content = db.Column(db.Text, nullable=<span class="literal">False</span>)</span><br><span class="line">	tag = db.Column(db.String(<span class="number">64</span>), nullable=<span class="literal">True</span>)</span><br><span class="line">	uuid = db.Column(db.Text, nullable=<span class="literal">False</span>)</span><br><span class="line">	create_time = db.Column(db.DateTime, nullable=<span class="literal">True</span>, default=datetime.now)</span><br><span class="line">	uid = db.relationship(<span class="string">&#x27;Article_Detail&#x27;</span>, backref=<span class="string">&#x27;article&#x27;</span>)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;&lt;Article %r&gt;&#x27;</span> % self.title</span><br></pre></td></tr></table></figure>
+
+<p>这样就实现了文章的数据库所需字段<br>id：数据库id，主键<br>title：文章标题，字符类型，后面声明长度<br>author：作者，字符类型<br>img_url：图片，text类型<br>content：文章简介<br>tag：所属标签<br>uuid：文章唯一标识id<br>create_time：创建时间，detatime类型<br>uid：反向代理，通过关联的名称表可以得到 article表中的属性</p>
+<p><strong>Article_Detail模型</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article_Detail</span>(<span class="params">db.Model</span>):</span></span><br><span class="line">	__tablename__ = <span class="string">&#x27;article_detail&#x27;</span></span><br><span class="line">	<span class="built_in">id</span> = db.Column(db.Integer, primary_key=<span class="literal">True</span>)</span><br><span class="line">	d_content=db.Column(db.Text,nullable=<span class="literal">False</span>)</span><br><span class="line">	uid = db.Column(db.Integer, db.ForeignKey(<span class="string">&#x27;article.id&#x27;</span>))</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;&lt;Article_Detail %r&gt;&#x27;</span> % self.title</span><br></pre></td></tr></table></figure>
+
+<p>id：数据库id，主键<br>d_content：详情文章内容，文本类型<br>uid：外键，关联到 article 表 id</p>
+<p>通过 relationship 和 ForeignKey 把文章和文章详情表联系起来，在编写文章详情的时候，通过 uid 选择是哪一篇文章的详情即可。</p>
+<p>对于个人博客而言，模型的关联并没有很复杂，一般是 一对多 的操作就可以搞定，当然如果是论坛或者社区的话，会用到 多对一 和 多对多 的数据库操作 ，不做详细介绍。</p>
+<p><strong>增删改查</strong></p>
+<p>SQLAlchemy  之所以这么流行，在 Flask 中地位如此之高，基于它是面对对象的数据库编程。</p>
+<p>所以，对于数据查询，添加等操作也是非常的简单。</p>
+<p><strong>查询文章列表：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@home.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>():</span></span><br><span class="line">	init_list= Article.query.order_by(db.desc(Article.create_time)).<span class="built_in">all</span>()</span><br><span class="line">	<span class="keyword">return</span> render_template(<span class="string">&#x27;home/index.html&#x27;</span>, datas=init_list)</span><br></pre></td></tr></table></figure>
+
+
+<p>可以看到，查询所有文章的语句，这里是按照创建的时间排序的，注意到desc(Article.create_time)，然后将所得列表传给前端页面，渲染完成。</p>
+<p>再来看看根据 id 查询文章详情内容的路由实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@home.route(<span class="params"><span class="string">&#x27;/article/&lt;uuid&gt;&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_detail</span>(<span class="params">uuid</span>):</span></span><br><span class="line">	base_path = os.path.abspath(<span class="string">&#x27;app/templates/article/&#x27;</span>)</span><br><span class="line">	old_file = os.listdir(base_path)[<span class="number">0</span>]</span><br><span class="line">	old_path = os.path.join(base_path, old_file)</span><br><span class="line">	file_path = os.path.abspath(<span class="string">&#x27;app/templates/article/&#123;&#125;.html&#x27;</span>.<span class="built_in">format</span>(uuid))</span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(file_path):</span><br><span class="line">		log_v.debug(<span class="string">&quot;[-] File does not exist, renaming !!!&quot;</span>)</span><br><span class="line">		os.rename(old_path, file_path)</span><br><span class="line">	form = CommentForm()</span><br><span class="line">	searchForm = SearchForm()</span><br><span class="line">	article_res = Article.query.filter_by(uuid=uuid).first()</span><br><span class="line">	article_detail_res = Article_Detail.query.filter_by(uid=article_res.<span class="built_in">id</span>).first()</span><br><span class="line">	<span class="keyword">return</span> render_template(<span class="string">&#x27;article/&#123;&#125;.html&#x27;</span>.<span class="built_in">format</span>(uuid), a_data=article_res, d_data=article_detail_res, form=form,searchForm=searchForm)</span><br></pre></td></tr></table></figure>
+
+<p><strong>思路设计：</strong></p>
+<p>在templates模板目录中新建一个article 用于存放文章详情页的html文件，并且索引到这个目录中，在这个目录中只有一个 html 文件，我们只需要向这个html文件填入查询回来的数据即可。</p>
+<p>由于文章列表需要根据文章的 uuid 来跳转到详情页，所以这个 html文件的名称需要 rename 为跳转文章的 uuid，才能正确跳转。</p>
+<p>最后，根据 uuid 查询到文章，再由文章的 id 查询到详情文章内容，渲染到详情页。</p>
+<p>是不是及其简单，所以前期的工作主要是数据库模型字段的设计，还有迁移到数据库中，也就是创建表，让其工作。</p>
+<p><strong>数据库迁移</strong></p>
+<p>使用 flask_migrate 扩展可以非常简单的进行数据库的迁移</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf8</span></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> flask_migrate <span class="keyword">import</span> Migrate, MigrateCommand</span><br><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> app</span><br><span class="line"><span class="keyword">from</span> app.models <span class="keyword">import</span> db</span><br><span class="line"><span class="keyword">from</span> flask_script <span class="keyword">import</span> Manager, Server</span><br><span class="line"></span><br><span class="line">manage = Manager(app)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 迁移</span></span><br><span class="line">Migrate(app,db)</span><br><span class="line">manage.add_command(<span class="string">&#x27;db&#x27;</span>,MigrateCommand)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    manage.run()</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">初始化</span></span><br><span class="line"><span class="string">python manage.py db init</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">创建迁移</span></span><br><span class="line"><span class="string">python manage.py db migrate</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">执行迁移</span></span><br><span class="line"><span class="string">python manage.py db upgrade</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>cmd窗口  执行命令  python manage.py db init </p>
+<p>初始化数据库，执行之后会在主 app 目录中生成一个 migrations 目录，里面包含了一些创建的信息，如 版本号 和 操作脚本。</p>
+<p>然后执行  python manage.py db migrate</p>
+<p>迁移数据库，在数据库中真正创建表字段</p>
+<p>最后执行  python manage.py db upgrade  让其生效</p>
+<p>PS：在往后的每一次更改数据库模型中的字段之后，只需要执行后两个命令即可。</p>
+<p><strong>关于数据库回滚</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> or_</span><br><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> app,db</span><br><span class="line"><span class="keyword">from</span> app.Logger.logger <span class="keyword">import</span> log_v</span><br><span class="line"><span class="keyword">from</span> app.forms <span class="keyword">import</span> CommentForm, SearchForm</span><br><span class="line"><span class="keyword">from</span> app.tools.getIdAddr <span class="keyword">import</span> getAddr</span><br><span class="line"><span class="keyword">from</span> app.home.home <span class="keyword">import</span> home</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> render_template, request, redirect</span><br><span class="line"><span class="keyword">from</span> app.models <span class="keyword">import</span> Article, Article_Detail, Global_V, Comment,UserIP</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@home.route(<span class="params"><span class="string">&#x27;/postComment/&lt;uuid&gt;&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">postComment</span>(<span class="params">uuid</span>):</span></span><br><span class="line">	<span class="comment"># app.config.update(SECRET_KEY=os.urandom(24))</span></span><br><span class="line">	<span class="comment"># log_v.debug(&quot;[*] UPDATE SECRET_KEY&quot;)</span></span><br><span class="line">	log_v.debug(<span class="string">&quot;[+] Add Comment&quot;</span>)</span><br><span class="line"></span><br><span class="line">	form = CommentForm()</span><br><span class="line">	<span class="comment"># 字段必须完整</span></span><br><span class="line">	<span class="keyword">if</span> request.method == <span class="string">&quot;POST&quot;</span> <span class="keyword">and</span> form.validate_on_submit():</span><br><span class="line">		theme = form.theme.data</span><br><span class="line">		content = form.content.data</span><br><span class="line">		email = form.email.data</span><br><span class="line">		csrf_token = form.csrf_token.data</span><br><span class="line">		t_md = request.form.get(<span class="string">&quot;t_md&quot;</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line">		<span class="keyword">if</span> <span class="built_in">all</span>([theme, email, content, csrf_token, t_md]):</span><br><span class="line">			<span class="keyword">try</span>:</span><br><span class="line">				add_comment = Comment(theme=theme, email=email, content=content, uuid=uuid)</span><br><span class="line">				db.session.add(add_comment)</span><br><span class="line">				db.session.commit()</span><br><span class="line">				<span class="keyword">return</span> <span class="string">&quot;评论成功&quot;</span></span><br><span class="line">			<span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">				db.session.rollback()</span><br><span class="line">				<span class="keyword">return</span> <span class="string">&quot;评论失败&quot;</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">finally</span>:</span><br><span class="line">				log_v.debug(<span class="string">&quot;Comment Done   &quot;</span> + theme + <span class="string">&#x27; &#x27;</span> + <span class="string">&#x27; &#x27;</span> + content + <span class="string">&#x27; &#x27;</span> + email + <span class="string">&#x27; &#x27;</span> + t_md)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&quot;参数不齐&quot;</span></span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="keyword">return</span> redirect(<span class="string">&#x27;/article/&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(uuid))</span><br></pre></td></tr></table></figure>
+
+<p>数据库的回滚是十分有必要的，用于处理程序或者数据错误，让程序回到上一次的状态，这就是所谓的数据库回滚，否则很可能会造成死锁或者超时，这是非常可怕的。</p>
+<p>所以，请回滚！！！</p>
+<hr>
+<p>文章来源：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/k5MowWxKxG0yZbLrKvrh7A" title="阅读原文">阅读原文</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:xuhang@yonghongtech.com">枫语咒</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xuhang422.github.io/2020/10/16/Flask%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%9E%8B/">https://xuhang422.github.io/2020/10/16/Flask%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%9E%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://xuhang422.github.io" target="_blank">进阶笔记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Flask/">Flask</a><a class="post-meta__tags" href="/tags/python/">python</a></div><div class="post_share"></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/10/19/Python_pymysql%E7%94%A8%E6%B3%95/" title="Python——pymysql用法"><img class="cover" src="http://121.5.1.207:3000/api/1?rand=34" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-19</div><div class="title">Python——pymysql用法</div></div></a></div><div><a href="/2020/10/22/%E7%94%A8flask%E5%AE%9E%E7%8E%B0api/" title="用flask实现api"><img class="cover" src="http://121.5.1.207:3000/api/1?rand=46" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-22</div><div class="title">用flask实现api</div></div></a></div><div><a href="/2020/10/24/python%20%E6%8F%92%E5%85%A5mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E5%90%AB%E6%9C%89%E5%8D%95%E5%BC%95%E5%8F%B7%E6%88%96%E5%8F%8C%E5%BC%95%E5%8F%B7%E6%8A%A5%E9%94%99/" title="python 插入mysql数据库字符串中含有单引号或双引号报错"><img class="cover" src="http://121.5.1.207:3000/api/1?rand=50" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-24</div><div class="title">python 插入mysql数据库字符串中含有单引号或双引号报错</div></div></a></div><div><a href="/2020/10/25/python_pip%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F/" title="python——pip国内镜像"><img class="cover" src="http://121.5.1.207:3000/api/1?rand=56" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-25</div><div class="title">python——pip国内镜像</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/head3.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">枫语咒</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xuhang422"><i class="fab fa-github"></i><span>github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:xuhang@yonghongtech.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">学而时习，负梦想前行！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/11/29/%E5%9F%BA%E7%A1%80-%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87-%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%80%E5%8F%B0linux%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="基础_学习目标_如何搭建一台linux服务器"><img src="http://121.5.1.207:3000/api/1?rand=15" onerror="this.onerror=null;this.src='/img/18.jpg'" alt="基础_学习目标_如何搭建一台linux服务器"/></a><div class="content"><a class="title" href="/2021/11/29/%E5%9F%BA%E7%A1%80-%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87-%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%80%E5%8F%B0linux%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="基础_学习目标_如何搭建一台linux服务器">基础_学习目标_如何搭建一台linux服务器</a><time datetime="2021-11-29T03:48:53.000Z" title="发表于 2021-11-29 11:48:53">2021-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/28/hexo%E5%BB%BA%E7%AB%8B%E4%B8%AD%E5%85%B3%E4%BA%8Elinux%E7%9A%84node%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E9%97%AE%E9%A2%98/" title="hexo建立中关于linux的node版本过低问题"><img src="http://121.5.1.207:3000/api/1?rand=13" onerror="this.onerror=null;this.src='/img/18.jpg'" alt="hexo建立中关于linux的node版本过低问题"/></a><div class="content"><a class="title" href="/2021/11/28/hexo%E5%BB%BA%E7%AB%8B%E4%B8%AD%E5%85%B3%E4%BA%8Elinux%E7%9A%84node%E7%89%88%E6%9C%AC%E8%BF%87%E4%BD%8E%E9%97%AE%E9%A2%98/" title="hexo建立中关于linux的node版本过低问题">hexo建立中关于linux的node版本过低问题</a><time datetime="2021-11-28T13:57:17.000Z" title="发表于 2021-11-28 21:57:17">2021-11-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/28/%E9%87%8D%E5%BB%BAtypecho/" title="重建typecho"><img src="http://121.5.1.207:3000/api/1?rand=77" onerror="this.onerror=null;this.src='/img/18.jpg'" alt="重建typecho"/></a><div class="content"><a class="title" href="/2021/03/28/%E9%87%8D%E5%BB%BAtypecho/" title="重建typecho">重建typecho</a><time datetime="2021-03-28T05:50:00.000Z" title="发表于 2021-03-28 13:50:00">2021-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/15/grep%E6%9F%A5%E6%89%BE%E6%8C%87%E5%AE%9A%E5%86%85%E5%AE%B9%E7%9A%84%E6%96%87%E4%BB%B6/" title="grep查找指定内容的文件"><img src="http://121.5.1.207:3000/api/1?rand=76" onerror="this.onerror=null;this.src='/img/18.jpg'" alt="grep查找指定内容的文件"/></a><div class="content"><a class="title" href="/2020/12/15/grep%E6%9F%A5%E6%89%BE%E6%8C%87%E5%AE%9A%E5%86%85%E5%AE%B9%E7%9A%84%E6%96%87%E4%BB%B6/" title="grep查找指定内容的文件">grep查找指定内容的文件</a><time datetime="2020-12-15T09:13:00.000Z" title="发表于 2020-12-15 17:13:00">2020-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/15/%E8%A1%A8%E5%90%8C%E6%AD%A5%E8%AF%AD%E5%8F%A5/" title="表同步语句"><img src="http://121.5.1.207:3000/api/1?rand=74" onerror="this.onerror=null;this.src='/img/18.jpg'" alt="表同步语句"/></a><div class="content"><a class="title" href="/2020/12/15/%E8%A1%A8%E5%90%8C%E6%AD%A5%E8%AF%AD%E5%8F%A5/" title="表同步语句">表同步语句</a><time datetime="2020-12-15T03:58:00.000Z" title="发表于 2020-12-15 11:58:00">2020-12-15</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('http://121.5.1.207:3000/api/1?rand=23')"><div id="footer-wrap"><div class="copyright">&copy;2021 By 枫语咒</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
