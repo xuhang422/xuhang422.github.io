@@ -408,7 +408,10 @@ ustc的镜像：https://docker.mirrors.ustc.edu.cn
   <entry>
     <title>mysql创建远程连接用户并服务权限</title>
     <url>/2020/10/16/mysql%E5%88%9B%E5%BB%BA%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E7%94%A8%E6%88%B7%E5%B9%B6%E6%9C%8D%E5%8A%A1%E6%9D%83%E9%99%90/</url>
-    <content><![CDATA[<p><strong>创建可以远程访问的用户：</strong></p>
+    <content><![CDATA[<p><strong>复制样例：</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;&#x27;</span>@<span class="string">&#x27;%&#x27;</span> Identified <span class="keyword">by</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建可以远程访问的用户：</strong></p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;username&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;password&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <p><strong>赋予权限：</strong></p>
@@ -1574,7 +1577,7 @@ ustc的镜像：https://docker.mirrors.ustc.edu.cn
     <title>DOS命令——systeminfo</title>
     <url>/2020/10/19/DOS%E5%91%BD%E4%BB%A4_systeminfo/</url>
     <content><![CDATA[<p>该命令是Windows中用于显示关于计算机及其操作系统的详细配置信息，包括操作系统配置、安全信息、产品 ID 和硬件属性，如 RAM、磁盘空间和网卡和补丁信息等。</p>
-<p><strong>结果截图</strong></p>
+<p>xxxxxxxxxx pymysql.escape_string(str_content)python</p>
 <p><img src="/img/uploads/2020/10/1440706996.png" alt="1"><br><img src="/img/uploads/2020/10/495846609.png" alt="2"></p>
 <p><strong>systeminfo命令详解</strong></p>
 <p>SYSTEMINFO [/S system [/U username [/P [password]]]] [/FO format] [/NH]</p>
@@ -2046,7 +2049,7 @@ ustc的镜像：https://docker.mirrors.ustc.edu.cn
   <entry>
     <title>grep查找指定内容的文件</title>
     <url>/2020/12/15/grep%E6%9F%A5%E6%89%BE%E6%8C%87%E5%AE%9A%E5%86%85%E5%AE%B9%E7%9A%84%E6%96%87%E4%BB%B6/</url>
-    <content><![CDATA[<p>Linux grep 命令用于查找文件里符合条件的字符串。grep 指令用于查找内容包含指定的范本样式的文件，如果发现某文件的内容符合所指定的范本样式，预设 grep 指令会把含有范本样式的那一列显示出来。</p>
+    <content><![CDATA[<p>xxxxxxxxxx INSERT INTO <code>data_1</code> (<code>id</code>,<code>QIDIAN</code>,<code>zhongdian</code>,<code>gongsi</code>,<code>hangban</code>,<code>shijian</code>,<code>zhundian</code>,<code>jiage</code>,<code>luru</code>)SELECT <code>id</code>,<code>起点</code>,<code>终点</code>,<code>航空公司</code>,<code>航班</code>,<code>起飞时间--&gt;到达时间</code>,<code>准点率</code>,<code>最低价格</code>,<code>录入时间</code>FROM <code>data</code>WHERE <code>id</code> NOT IN (SELECT id FROM <code>data_1</code>);mysql</p>
 <p><strong>参数：</strong></p>
 <p>-r 是递归查找<br>-n 是显示行号<br>-R 查找所有文件包含子目录<br>-i 忽略大小写<br>-v 排除所带字符的行<br>—xargs配合grep查找</p>
 <p><strong>例：</strong></p>
@@ -2366,6 +2369,371 @@ ustc的镜像：https://docker.mirrors.ustc.edu.cn
         <tag>python</tag>
         <tag>json</tag>
         <tag>数据处理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS7查看开放端口命令及开放端口号</title>
+    <url>/2022/06/11/CentOS7%E6%9F%A5%E7%9C%8B%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3%E5%8F%B7/</url>
+    <content><![CDATA[<ol>
+<li>查看已开放的端口</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">firewall-cmd --list-ports</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>开放单个端口（开放后需要要重启防火墙才生效）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=8080/tcp --permanent</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>开放多个端口（开放后需要要重启防火墙才生效）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=20000-29999/tcp --permanent</span><br></pre></td></tr></table></figure>
+
+<p>（–permanent  为永久生效，不加为单次有效（重启失效））</p>
+<ol start="4">
+<li>关闭端口（关闭后需要要重启防火墙才生效）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">firewall-cmd --zone=public --remove-port=8080/tcp --permanent</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>查看端口是否打开</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">firewall-cmd --zone= public --query-port=80/tcp</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>查看防火墙状态（两种方式）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">firewall-cmd --state</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl status firewalld</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>开启防火墙</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start firewalld</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>重启防火墙 (两种方式）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl restart firewalld</span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li>设置开机启动防火墙</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> firewalld</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>查看防火墙设置开机自启是否成功</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl is-enabled firewalld;<span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
+
+<ol start="11">
+<li>禁止防火墙开机启动</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span> firewalld</span><br></pre></td></tr></table></figure>
+
+<ol start="12">
+<li>停止防火墙</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>centos</tag>
+        <tag>端口</tag>
+        <tag>安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dockerfile打包镜像</title>
+    <url>/2022/06/17/dockerfile%E6%89%93%E5%8C%85%E9%95%9C%E5%83%8F/</url>
+    <content><![CDATA[<p>创建dockerfile的编辑文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM centos:7.6.1810</span><br><span class="line">MAINTAINER yhbi_xh_20220614</span><br><span class="line">RUN rm -rf /etc/localtime &amp;&amp; \</span><br><span class="line">ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; \</span><br><span class="line">yum -y install kde-l10n-Chinese &amp;&amp; \</span><br><span class="line">yum -y install glibc-common &amp;&amp; \</span><br><span class="line">localedef -c -f UTF-8 -i zh_CN zh_CN.utf8</span><br><span class="line">RUN yum -y install fontconfig</span><br><span class="line">ENV LC_ALL zh_CN.utf8</span><br><span class="line">ADD YH942.tar.gz /root/</span><br><span class="line">WORKDIR /root/</span><br><span class="line">EXPOSE 8080</span><br><span class="line">COPY [&quot;jdk-11.0.4&quot;,&quot;/root/jdk-11.0.4&quot;]</span><br><span class="line">ENV JAVA_HOME=/root/jdk-11.0.4</span><br><span class="line">ENV PATH=$JAVA_HOME/bin:$PATH</span><br><span class="line">CMD [&quot;sh&quot;, &quot;/root/yh/tomcat/bin/run.sh&quot;]</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>ADD YH942.tar.gz /root/</code>是将想要导入镜像的文件解压到指定目录下。</p>
+<p><code>EXPOSE 8080</code>镜像会对外开启8080端口。</p>
+<p><code>ENV JAVA_HOME=/root/jdk-11.0.4</code>与<code>ENV PATH=$JAVA_HOME/bin:$PATH</code>配置镜像的环境变量</p>
+<p><code>CMD [&quot;sh&quot;, &quot;/root/yh/tomcat/bin/run.sh&quot;]</code>为启动docker的守护进程。</p>
+<p>进行镜像的打包<br><code>docker build -f YH_docker_make . -t YH:942</code></p>
+<p>注：后面可以将压缩包在打包前转为80端口，并且转为https协议，再把/bi/Viewer去掉。</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>docker</tag>
+        <tag>永洪</tag>
+        <tag>dockerfile</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>centos查看cpu核数</title>
+    <url>/2022/03/07/centos%E6%9F%A5%E7%9C%8Bcpu%E6%A0%B8%E6%95%B0/</url>
+    <content><![CDATA[<p>Centos下查看cpu核数<br>1.概念<br>物理CPU：实际Server中插槽上的CPU个数。<br>物理cpu数量：可以数不重复的 physical id 有几个。</p>
+<p>2.逻辑CPU<br>Linux用户对 /proc/cpuinfo 这个文件肯定不陌生. 它是用来存储cpu硬件信息的，信息内容分别列出了processor 0 – n 的规格。这里需要注意，如果你认为n就是真实的cpu数的话, 就大错特错了。一般情况，我们认为一颗cpu可以有多核，加上intel的超线程技术(HT), 可以在逻辑上再分一倍数量的cpu core出来逻辑CPU数量=物理cpu数量 x cpu cores 这个规格值 x 2(如果支持并开启ht)<br>备注一下：Linux下top查看的CPU也是逻辑CPU个数</p>
+<p>3.CPU核数<br>一块CPU上面能处理数据的芯片组的数量、比如现在的i5 760,是双核心四线程的CPU、而 i5 2250 是四核心四线程的CPU，一般来说，物理CPU个数×每颗核数就应该等于逻辑CPU的个数，如果不相等的话，则表示服务器的CPU支持超线程技术。</p>
+<p>4.查看CPU信息<br>当我们 cat /proc/cpuinfo 时，具有相同core id的CPU是同一个core的超线程，具有相同physical id的CPU是同一个CPU封装的线程或核心。</p>
+<p>下面举例说明<br>【1】查看CPU型号：cpu型号是E7-4820</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@node1 ~]# cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c</span><br><span class="line">32  Intel(R) Xeon(R) CPU E7- 4820  @ 2.00GHz</span><br></pre></td></tr></table></figure>
+
+<p>【2】查看物理cpu个数：物理核心数是2核</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@node1 ~]# cat /proc/cpuinfo | grep &quot;physical id&quot; | sort | uniq|wc -l</span><br></pre></td></tr></table></figure>
+
+<p>【3】查看逻辑cpu的个数：逻辑cpu个数是32个</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@node1 ~]# cat /proc/cpuinfo | grep &quot;processor&quot; |wc -l</span><br></pre></td></tr></table></figure>
+
+<p>【4】查看cpu是几核：cpu是8核</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@node1 ~]# cat /proc/cpuinfo | grep &quot;cores&quot;|uniq</span><br><span class="line">cpu cores       : 8</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>centos</tag>
+        <tag>运维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>centos开机自启</title>
+    <url>/2022/06/17/centos%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/</url>
+    <content><![CDATA[<p>如果只是添加一条开机启动的命令:</p>
+<ol>
+<li><p><code>chmod +x /etc/rc.d/rc.local</code></p>
+</li>
+<li><p>将命令写到 /etc/rc.d/rc.local 这个文件中</p>
+</li>
+<li><p><code>reboot</code></p>
+</li>
+</ol>
+<p>一、添加开机自启服务</p>
+<p>在CentOS 7中添加开机自启服务非常方便，只需要两条命令(以Jenkins为例)：</p>
+<p>systemctl enable jenkins.service #设置jenkins服务为自启动服务<br>sysstemctl start  jenkins.service #启动jenkins服务<br>二、添加开机自启脚本</p>
+<p>在centos7中增加脚本有两种常用的方法，以脚本autostart.sh为例：</p>
+<p>#!/bin/bash<br>#description:开机自启脚本<br>/usr/local/tomcat/bin/startup.sh  #启动tomcat<br>方法一</p>
+<p>1、赋予脚本可执行权限（/opt/script/autostart.sh是你的脚本路径）</p>
+<p>chmod +x /opt/script/autostart.sh<br>2、打开/etc/rc.d/rc.local或/etc/rc.local文件，在末尾增加如下内容</p>
+<p>su - user -c ‘/opt/script/autostart.sh’<br>3、在centos7中，/etc/rc.d/rc.local的权限被降低了，所以需要执行如下命令赋予其可执行权限</p>
+<p>chmod +x /etc/rc.d/rc.local<br>方法二</p>
+<p>1、将脚本移动到/etc/rc.d/init.d目录下<br>mv /opt/script/autostart.sh /etc/rc.d/init.d</p>
+<p>2、增加脚本的可执行权限</p>
+<p>chmod +x  /etc/rc.d/init.d/autostart.sh<br>3、添加脚本到开机自动启动项目中</p>
+<p>cd /etc/rc.d/init.d<br>chkconfig –add autostart.sh<br>chkconfig autostart.sh on<br>二、自定义服务文件，添加到系统服务，通过Systemctl管理</p>
+<p>1.写服务文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Unit]:服务的说明</span><br><span class="line">Description:描述服务</span><br><span class="line">After:描述服务类别</span><br><span class="line"></span><br><span class="line">[Service]服务运行参数的设置</span><br><span class="line">Type=forking是后台运行的形式</span><br><span class="line">ExecStart为服务的具体运行命令</span><br><span class="line">ExecReload为重启命令</span><br><span class="line">ExecStop为停止命令</span><br><span class="line">PrivateTmp=True表示给服务分配独立的临时空间</span><br><span class="line">注意：启动、重启、停止命令全部要求使用绝对路径</span><br><span class="line">[Install]服务安装的相关设置，可设置为多用户</span><br></pre></td></tr></table></figure>
+<p>示例：nginx.service</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=nginx - high performance web server</span><br><span class="line">After=network.target remote-fs.target nss-lookup.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">ExecStart=/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</span><br><span class="line">ExecReload=/usr/local/nginx/sbin/nginx -s reload</span><br><span class="line">ExecStop=/usr/local/nginx/sbin/nginx -s stop</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line">redis.service</span><br><span class="line"></span><br><span class="line">[Unit]</span><br><span class="line">Description=Redis</span><br><span class="line">After=network.target remote-fs.target nss-lookup.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">ExecStart=/usr/local/bin/redis-server /etc/redis.conf</span><br><span class="line">ExecStop=kill -INT `cat /tmp/redis.pid`</span><br><span class="line">User=www</span><br><span class="line">Group=www</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>2.保存目录<br>以754的权限保存在目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/lib/systemd/system </span><br></pre></td></tr></table></figure>
+<p>3.设置开机自启动<br>任意目录下执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl enable nginx.service </span><br></pre></td></tr></table></figure>
+<p>4.其他命令<br>启动nginx服务<br><code>systemctl start nginx.service</code><br>设置开机自启动<br><code>systemctl enable nginx.service</code><br>停止开机自启动<br><code>systemctl disable nginx.service</code><br>查看服务当前状态<br><code>systemctl status nginx.service</code><br>重新启动服务<br><code>systemctl restart nginx.service</code><br>查看所有已启动的服务<br><code>systemctl list-units --type=service</code></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>centos</tag>
+        <tag>运维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dockerfile构建镜像后启动后立即关闭问题</title>
+    <url>/2022/06/14/dockerfile%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E5%90%8E%E5%90%AF%E5%8A%A8%E5%90%8E%E7%AB%8B%E5%8D%B3%E5%85%B3%E9%97%AD%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p><img src="/img/uploads/2022/06/660817131.png"><br>在dockerfile中最后一句是启动容器后执行的文件，当时我看到后想着应该是startup.sh是启动文件，从没用过run.sh就改掉了。<br>但昨晚打包好后就一直启动后就关闭，查了很多资料都没有说明原因以及解决方法。<br>中午刚刚查到了原因：<br><code>CMD [&quot;sh&quot;, &quot;/home/yh/Yonghong9.2/tomcat/bin/run.sh&quot;]</code>的作用确实是启动容器后执行此命令，但作用不止如此。<br><img src="/img/uploads/2022/06/4142163131.png"><br>在菜鸟教程中有对CMD的说明，其实CMD命令为容器启动了一个守护进程，当守护进程结束后，docker容器也会关闭。当有多个CMD命令的时候只有最后一个CMD有效。<br>而我们产品中startup.sh在启动后展示个启动信息后就结束了，所以导致容器每次启动后就迅速关闭。<br>在查看run.sh中，文件引用了startup.sh后停滞了两秒，然后运行了tail -f的命令来保持进程不关闭，近而使得容器保持运行。</p>
+<p>通过这个问题我还差到了docker的一些问题排查的方法：<br>1、<code>docker logs 容器id</code>     （来查看容器的日志）<br>2、<code>journalctl -xe</code>     （来查看系统日志）<br>3、<code>docker run -it --rm --entrypoint bash 镜像id</code>    （直接进入容器来看容器是否能正常运行）</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>docker</tag>
+        <tag>容器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>js处理xml（不同浏览器兼容）</title>
+    <url>/2022/08/06/js%E5%A4%84%E7%90%86xml%EF%BC%88%E4%B8%8D%E5%90%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%EF%BC%89/</url>
+    <content><![CDATA[<p>区分当前浏览器是不是ie浏览器<br>window.ActiveXObject说明：<br>ie10以下，window.ActiveXObject返回一个对象，可以用 !!window.ActiveXObject 来判断是否是ie浏览器。<br>但是从ie11开始，window.ActiveXObject返回的是undefined，但是尽管如此，window.ActiveXObject === undefined 在ie11中是不成立的。下图是在ie11控制台做的测试结果：<br><img src="/img/uploads/2022/08/2778435953.png"><br>ie11测试<br>其他非ie浏览器（如chrome，firefox，opera，甚至ie的亲弟弟edge），window.ActiveXObject都是undefined，但是和ie11不同，window.ActiveXObject === undefined是成立的，下面只举例在chrome控制台做的测试结果：<br><img src="/img/uploads/2022/08/1737055677.png"><br>chrome测试<br>所以现在可以用window.ActiveXObject !== undefined来判断当前浏览器，返回true就说明是ie浏览器。</p>
+<p>###String字符串与xml对象间的互相转换：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 字符串转xml对象</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="variable">xmlString</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns <span class="type">&#123;*&#125;</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@constructor</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">string2Xml</span>(<span class="params">xmlString</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.ActiveXObject !== <span class="literal">undefined</span>) &#123; <span class="comment">// for IE</span></span><br><span class="line">        <span class="keyword">var</span> xmlObject = <span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLDOM&quot;</span>);</span><br><span class="line">        xmlObject.async = <span class="string">&quot;false&quot;</span>;</span><br><span class="line">        xmlObject.loadXML(xmlString);</span><br><span class="line">        <span class="keyword">return</span> xmlObject;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123; <span class="comment">// for other browsers</span></span><br><span class="line">        <span class="keyword">var</span> parser = <span class="keyword">new</span> DOMParser();</span><br><span class="line">        <span class="keyword">var</span> xmlObject = parser.parseFromString(xmlString, <span class="string">&quot;text/xml&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> xmlObject;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * xml对象转字符串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="variable">xmlObject</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns <span class="type">&#123;*&#125;</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@constructor</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">xml2String</span>(<span class="params">xmlObject</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.ActiveXObject !== <span class="literal">undefined</span>) &#123; <span class="comment">// for IE</span></span><br><span class="line">        <span class="keyword">return</span> xmlObject.xml;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123; <span class="comment">// for other browsers</span></span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> XMLSerializer()).serializeToString(xmlObject);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###xml对象转json对象<br>ie浏览器不支持children属性，只能用childNodes属性，下面是xml对象转json的代码实现，可以当做工具类使用：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 将xml对象转json对象</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="variable">xml</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Xml2Json</span>(<span class="params">xml</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> js_obj = &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span> (xml.nodeType === Node.ELEMENT_NODE) &#123; <span class="comment">// 元素节点</span></span><br><span class="line">        <span class="keyword">var</span> _attr = xml.attributes;</span><br><span class="line">        <span class="keyword">if</span> (_attr.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; _attr.length; j++) &#123;</span><br><span class="line">                <span class="comment">// 属性前面用‘@’标注，可以自定义</span></span><br><span class="line">                js_obj[<span class="string">&#x27;@&#x27;</span> + _attr[j].nodeName] = _attr[j].value;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (xml.nodeType === Node.TEXT_NODE) &#123; <span class="comment">// 文本</span></span><br><span class="line">        <span class="comment">// 下面正则意思是去掉文本里的空格换行和回车</span></span><br><span class="line">        js_obj = (xml.nodeValue.replace(<span class="regexp">/[\ +\r\n]/g</span>, <span class="string">&quot;&quot;</span>) === <span class="string">&quot;&quot;</span>) ? <span class="string">&quot;&quot;</span> : xml.nodeValue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (xml.hasChildNodes()) &#123;</span><br><span class="line">        <span class="keyword">var</span> nodes = xml.childNodes;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nodes.length; i++) &#123;</span><br><span class="line">            <span class="keyword">var</span> nodeName = nodes[i].nodeName;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span>(js_obj[nodeName]) === <span class="string">&quot;undefined&quot;</span>) &#123;</span><br><span class="line">                <span class="keyword">var</span> _jsObj = Xml2Json(nodes[i]); <span class="comment">// 递归</span></span><br><span class="line">                <span class="keyword">if</span> (_jsObj !== <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">                    js_obj[nodeName] = _jsObj;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">typeof</span>(js_obj[nodeName].push) === <span class="string">&quot;undefined&quot;</span>) &#123;</span><br><span class="line">                    <span class="keyword">var</span> old = js_obj[nodeName];</span><br><span class="line">                    js_obj[nodeName] = [];</span><br><span class="line">                    js_obj[nodeName].push(old);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">var</span> _jsObj = Xml2Json(nodes[i]); <span class="comment">// 递归</span></span><br><span class="line">                <span class="keyword">if</span> (_jsObj !== <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">                    js_obj[nodeName].push(_jsObj);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> js_obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">节点类型（xml.nodeType）判断：</span><br><span class="line">Node.ELEMENT_NODE：值为1，元素节点</span><br><span class="line">Node.TEXT_NODE：值为3，文本</span><br><span class="line">Node.COMMENT_NODE：值为8，注释节点</span><br><span class="line">Node.DOCUMENT_NODE：值为9，document节点</span><br></pre></td></tr></table></figure>
+
+<p>下面的是综合上面代码实现的xml对象转json对象的html页面，可以用浏览器打开查看运行结果：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>js实现xml转json<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"><span class="comment">/**</span></span></span><br><span class="line"><span class="comment"><span class="javascript"> * 字符串转xml对象</span></span></span><br><span class="line"><span class="comment"><span class="javascript"> * <span class="doctag">@param <span class="variable">xmlString</span></span></span></span></span><br><span class="line"><span class="comment"><span class="javascript"> * <span class="doctag">@returns <span class="type">&#123;*&#125;</span></span></span></span></span><br><span class="line"><span class="comment"><span class="javascript"> * <span class="doctag">@constructor</span></span></span></span><br><span class="line"><span class="comment"><span class="javascript"> */</span></span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">string2Xml</span>(<span class="params">xmlString</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (<span class="built_in">window</span>.ActiveXObject !== <span class="literal">undefined</span>) &#123; <span class="comment">// for IE</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> xmlObject = <span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLDOM&quot;</span>);</span></span><br><span class="line"><span class="javascript">        xmlObject.async = <span class="string">&quot;false&quot;</span>;</span></span><br><span class="line"><span class="javascript">        xmlObject.loadXML(xmlString);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> xmlObject;</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">else</span> &#123; <span class="comment">// for other browsers</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> parser = <span class="keyword">new</span> DOMParser();</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> xmlObject = parser.parseFromString(xmlString, <span class="string">&quot;text/xml&quot;</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> xmlObject;</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript">&#125;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript"><span class="comment">/**</span></span></span><br><span class="line"><span class="comment"><span class="javascript"> * 将xml对象转json对象</span></span></span><br><span class="line"><span class="comment"><span class="javascript"> * <span class="doctag">@param <span class="variable">xml</span></span></span></span></span><br><span class="line"><span class="comment"><span class="javascript"> */</span></span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">Xml2Json</span>(<span class="params">xml</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> js_obj = &#123;&#125;;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (xml.nodeType === Node.ELEMENT_NODE) &#123; <span class="comment">// 元素节点</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> _attr = xml.attributes;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (_attr.length &gt; <span class="number">0</span>) &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; _attr.length; j++) &#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">// 属性前面用‘@’标注，可以自定义</span></span></span><br><span class="line"><span class="javascript">                js_obj[<span class="string">&#x27;@&#x27;</span> + _attr[j].nodeName] = _attr[j].value;</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (xml.nodeType === Node.TEXT_NODE) &#123; <span class="comment">// 文本</span></span></span><br><span class="line"><span class="javascript">        js_obj = (xml.nodeValue.replace(<span class="regexp">/[\ +\r\n]/g</span>, <span class="string">&quot;&quot;</span>) === <span class="string">&quot;&quot;</span>) ? <span class="string">&quot;&quot;</span> : xml.nodeValue;</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (xml.hasChildNodes()) &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> nodes = xml.childNodes;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nodes.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> nodeName = nodes[i].nodeName;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">if</span> (<span class="keyword">typeof</span>(js_obj[nodeName]) === <span class="string">&quot;undefined&quot;</span>) &#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> _jsObj = Xml2Json(nodes[i]); <span class="comment">// 递归</span></span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (_jsObj !== <span class="string">&quot;&quot;</span>) &#123;</span></span><br><span class="line"><span class="javascript">                    js_obj[nodeName] = _jsObj;</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (<span class="keyword">typeof</span>(js_obj[nodeName].push) === <span class="string">&quot;undefined&quot;</span>) &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">var</span> old = js_obj[nodeName];</span></span><br><span class="line"><span class="javascript">                    js_obj[nodeName] = [];</span></span><br><span class="line"><span class="javascript">                    js_obj[nodeName].push(old);</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> _jsObj = Xml2Json(nodes[i]); <span class="comment">// 递归</span></span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (_jsObj !== <span class="string">&quot;&quot;</span>) &#123;</span></span><br><span class="line"><span class="javascript">                    js_obj[nodeName].push(_jsObj);</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> js_obj;</span></span><br><span class="line"><span class="javascript">&#125;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript"><span class="comment">// xml字符串</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> xmlstr = <span class="string">&#x27;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &#x27;</span>+</span></span><br><span class="line"><span class="javascript">              <span class="string">&#x27;&lt;students&gt;&#x27;</span>+</span></span><br><span class="line"><span class="javascript">                <span class="string">&#x27;&lt;student id=&quot;1&quot; no=&quot;20010001&quot; name=&quot;张三&quot; sex=&quot;男&quot;&gt;&#x27;</span>+</span></span><br><span class="line"><span class="javascript">                  <span class="string">&#x27;&lt;birthday&gt;1999-1-1&lt;/birthday&gt;&#x27;</span>+</span></span><br><span class="line"><span class="javascript">                <span class="string">&#x27;&lt;/student&gt;&#x27;</span>+</span></span><br><span class="line"><span class="javascript">                <span class="string">&#x27;&lt;student id=&quot;2&quot; no=&quot;20010002&quot; name=&quot;李四&quot; sex=&quot;男&quot;&gt;&#x27;</span>+</span></span><br><span class="line"><span class="javascript">                  <span class="string">&#x27;&lt;birthday&gt;1998-1-1&lt;/birthday&gt;&#x27;</span>+</span></span><br><span class="line"><span class="javascript">                <span class="string">&#x27;&lt;/student&gt;&#x27;</span>+</span></span><br><span class="line"><span class="javascript">              <span class="string">&#x27;&lt;/students&gt;&#x27;</span>;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> xml_Obj = string2Xml(xmlstr);</span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> json_Obj = Xml2Json(xml_Obj);</span></span><br><span class="line"><span class="javascript"><span class="built_in">document</span>.write(<span class="built_in">JSON</span>.stringify(json_Obj));</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(json_Obj));</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;students&quot;: &#123;</span><br><span class="line">    &quot;student&quot;: [</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;@id&quot;: &quot;1&quot;,</span><br><span class="line">        &quot;@no&quot;: &quot;20010001&quot;,</span><br><span class="line">        &quot;@name&quot;: &quot;张三&quot;,</span><br><span class="line">        &quot;@sex&quot;: &quot;男&quot;,</span><br><span class="line">        &quot;birthday&quot;: &#123;</span><br><span class="line">          &quot;#text&quot;: &quot;1999-1-1&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;@id&quot;: &quot;2&quot;,</span><br><span class="line">        &quot;@no&quot;: &quot;20010002&quot;,</span><br><span class="line">        &quot;@name&quot;: &quot;李四&quot;,</span><br><span class="line">        &quot;@sex&quot;: &quot;男&quot;,</span><br><span class="line">        &quot;birthday&quot;: &#123;</span><br><span class="line">          &quot;#text&quot;: &quot;1998-1-1&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>xml</tag>
+        <tag>网页</tag>
+        <tag>开发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux开机自启服务设置</title>
+    <url>/2022/06/14/linux%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E6%9C%8D%E5%8A%A1%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<p>查看crond.serivce服务的自启动状态</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl is-enabled crond.service</span><br></pre></td></tr></table></figure>
+<p>开启crond.serivce服务自启动</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl enable crond.service</span><br></pre></td></tr></table></figure>
+<p>列出所有的启动文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl list-unit-files</span><br></pre></td></tr></table></figure>
+<p>列出所有状态为enable的启动文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl list-unit-files | grep enable</span><br></pre></td></tr></table></figure>
+<p>关闭crond.serivce的自启动状态</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl disable crond.service</span><br></pre></td></tr></table></figure>
+<p>查看crond.service的启动状态</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl status crond.service</span><br></pre></td></tr></table></figure>
+<p>开启crond.service服务命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl start crond.service</span><br></pre></td></tr></table></figure>
+<p>停止crond.service服务命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl stop crond.service</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>运维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>k8s配置master运行pod</title>
+    <url>/2022/07/12/k8s%E9%85%8D%E7%BD%AEmaster%E8%BF%90%E8%A1%8Cpod/</url>
+    <content><![CDATA[<p>出于安全考虑，默认配置下Kubernetes不会将Pod调度到Master节点。</p>
+<p>查看k8s-master表示不运行pod</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@k8s-master ~]# kubectl describe node k8s-master |grep Taints</span><br><span class="line"></span><br><span class="line">Taints: node-role.kubernetes.io/master:NoSchedule</span><br></pre></td></tr></table></figure>
+
+<p>查看k8s-master表示运行pod</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@k8s-master ~]# kubectl describe node k8s-master |grep Taints</span><br><span class="line"></span><br><span class="line">Taints: &lt;none&gt;</span><br></pre></td></tr></table></figure>
+<p>让 master节点参与POD负载的命令为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl taint nodes k8s-master node-role.kubernetes.io/master-</span><br></pre></td></tr></table></figure>
+<p>让 master节点恢复不参与POD负载的命令为 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl taint nodes k8s-master node-role.kubernetes.io/master=:NoSchedule</span><br></pre></td></tr></table></figure>
+
+<p>文章来源：<a href="https://blog.csdn.net/mayi_xiaochaun/article/details/121619344?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_ecpm_v1~rank_v31_ecpm-3-121619344-null-null.pc_agg_new_rank&utm_term=k8s%E6%9C%8D%E5%8A%A1%E8%83%BD%E8%B7%91%E5%9C%A8master%E4%B8%8A&spm=1000.2123.3001.4430" title="k8s配置master运行pod">k8s配置master运行pod</a> </p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>运维</tag>
+        <tag>k8s</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql开启历史查询记录以及查询方式</title>
+    <url>/2022/05/13/mysql%E5%BC%80%E5%90%AF%E5%8E%86%E5%8F%B2%E6%9F%A5%E8%AF%A2%E8%AE%B0%E5%BD%95%E4%BB%A5%E5%8F%8A%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<p>#查看正在执行的sql</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-- 切换数据库</span><br><span class="line">use information_schema;</span><br><span class="line">-- 查看正在执行的SQL语句</span><br><span class="line">show processlist;</span><br><span class="line">-- 或者直接使用SQL语句查询</span><br><span class="line">select * from information_schema.`PROCESSLIST` where info is not null;</span><br></pre></td></tr></table></figure>
+
+<p>#开启日志模式，记录所有SQL语句执行记录</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">首先查看日志是否开启了记录</span><br><span class="line">-- 查看日志功能设置状态</span><br><span class="line">show variables like &#x27;general_log&#x27;; </span><br><span class="line"></span><br><span class="line">-- 打开日志记录功能</span><br><span class="line">set global general_log=on; </span><br><span class="line"></span><br><span class="line">-- 关闭日志记录功能</span><br><span class="line">set global general_log=off; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 查看当前日志输出类型：table / file ，可根据需要具体设置</span><br><span class="line">show variables like &#x27;log_output&#x27;;</span><br><span class="line"></span><br><span class="line">-- 设置日志输出至table</span><br><span class="line">set global log_output=&#x27;table&#x27;;</span><br><span class="line"></span><br><span class="line">-- 日志输出至table模式，查看日志记录</span><br><span class="line">SELECT * from mysql.general_log ORDER BY event_time DESC;</span><br><span class="line"></span><br><span class="line">-- 设置日志输出至file</span><br><span class="line">set global log_output=&#x27;file&#x27;; </span><br><span class="line"></span><br><span class="line">-- 查看日志输出文件的保存路径</span><br><span class="line">show variables like &#x27;general_log_file&#x27;;</span><br><span class="line"></span><br><span class="line">-- 修改日志输出文件的保存路径</span><br><span class="line">set global general_log_file=&#x27;tmp/general.log&#x27;; </span><br><span class="line"></span><br><span class="line">-- 日志输出至table模式，清空日志记录</span><br><span class="line">truncate table mysql.general_log;</span><br><span class="line"></span><br><span class="line">-- 日志输出至file模式，查看日志记录</span><br><span class="line">cat /tmp/general.log</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql插入数据报错（线程锁问题）</title>
+    <url>/2022/05/13/mysql%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE%E6%8A%A5%E9%94%99%EF%BC%88%E7%BA%BF%E7%A8%8B%E9%94%81%E9%97%AE%E9%A2%98%EF%BC%89/</url>
+    <content><![CDATA[<p>#报错内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Lock wait timeout exceeded; try restarting transaction</span><br></pre></td></tr></table></figure>
+
+<p>#解决办法：</p>
+<p>先同步到本地，再上传</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT * FROM information_schema.innodb_trx</span><br><span class="line">kill [trx_mysql_thread_id];</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>数据库</tag>
+        <tag>锁死</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>win家庭版没有编辑策略组解决</title>
+    <url>/2022/06/16/win%E5%AE%B6%E5%BA%AD%E7%89%88%E6%B2%A1%E6%9C%89%E7%BC%96%E8%BE%91%E7%AD%96%E7%95%A5%E7%BB%84%E8%A7%A3%E5%86%B3/</url>
+    <content><![CDATA[<p>创建bat文件，管理员身份运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">pushd &quot;%~dp0&quot;</span><br><span class="line">dir /b %SystemRoot%\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientExtensions-Package~3*.mum&gt;List.txt</span><br><span class="line">dir /b %SystemRoot%\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientTools-Package~3*.mum&gt;&gt;List.txt</span><br><span class="line">for /f %%i in (&#x27;findstr /i . List.txt 2^&gt;nul&#x27;) do dism /online /norestart /add-package:&quot;%SystemRoot%\servicing\Packages\%%i&quot;</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+<p><img src="/img/uploads/2022/06/1377138524.png"></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+        <tag>运维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python文件打包命令</title>
+    <url>/2022/03/27/python%E6%96%87%E4%BB%B6%E6%89%93%E5%8C%85%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pyinstaller -F yoyoblog.py -i favicon.ico</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>待办事项</title>
+    <url>/2022/06/27/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B920220627/</url>
+    <content><![CDATA[<p>os.popen与os.system用法和区别<br>awk的用法<br>语音识别、语音合成、声纹识别、语音唤醒<br>siri、mycroft<br><a href="https://www.zhihu.com/question/527796225/answer/2476514720">https://www.zhihu.com/question/527796225/answer/2476514720</a><br><a href="https://blog.csdn.net/cumo7370/article/details/107406665">https://blog.csdn.net/cumo7370/article/details/107406665</a><br>php学习<br><img src="/img/uploads/2022/06/1234695822.png"></p>
+<p>k8s帮助文档<br><a href="https://k8s.easydoc.net/docs/dRiQjyTY/28366845/6GiNOzyZ/9EX8Cp45">https://k8s.easydoc.net/docs/dRiQjyTY/28366845/6GiNOzyZ/9EX8Cp45</a><br>k8s视频教程<br><a href="https://www.bilibili.com/video/BV1Tg411P7EB?p=3&amp;spm_id_from=pageDriver&amp;vd_source=b538f3c2c8db4271ef683100225fefdf">https://www.bilibili.com/video/BV1Tg411P7EB?p=3&amp;spm_id_from=pageDriver&amp;vd_source=b538f3c2c8db4271ef683100225fefdf</a><br>易文档<br><a href="https://easydoc.net/download">https://easydoc.net/download</a><br>docker镜像修改commit命令</p>
+]]></content>
+      <categories>
+        <category>待办</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>通过python实现办公自动化</title>
+    <url>/2022/06/16/%E9%80%9A%E8%BF%87python%E5%AE%9E%E7%8E%B0%E5%8A%9E%E5%85%AC%E8%87%AA%E5%8A%A8%E5%8C%96/</url>
+    <content><![CDATA[<p>要说在工作中最让人头疼的就是用同样的方式处理一堆文件夹中文件，这并不难，但就是繁。所以在遇到机械式的操作时一定要记得使用Python来合理偷懒！</p>
+<p>最近朋友找到我想对1000+的excel文件获取其中的一部分数据进行获取和整理。</p>
+<p>首先，我先对他的需求做了一个简单的询问，内容包括获取数据的格式是否一致、数据所在位置是否一直、获取数据的逻辑是否一致，以及从他那里获取到一个标准数据的样式。<br>沟通下来他想处理的数据大概长这样：<br><img src="/img/uploads/2022/06/1594733782.png"></p>
+<p>他想获取的只是第二行数据中的公司、姓名、组别、电话号整合到一个文件中生成对应的四个列，这个过程中提到了一个比较特殊的点，这个信息有可能在sheet1中也有可能在sheet2中，也可能都存在，这个时候我就想一定要遍历sheet页。如果都存在的时候数据也是相同的，但只需要获取其中一条，并且最终的结果数据一定是没有重复的，那么在做的时候就要考虑判断是否存在重复数据了。</p>
+<p>现在需求确定了，我们就要考虑脚本如何运行了，首先我们要获取excel所在文件夹，然后遍历这个文件夹中的所有excel文件，再依次遍历文件中的sheet页获取指定位置的数据，最后对数据进行格式的处理存到我们指定的文件中。这个过程就是一个简单的ETL（Extraction-Transformation-Loading）过程。<br><img src="/img/uploads/2022/06/3789569631.png"></p>
+<p>确定了逻辑后我们就可以开始编写我们想要的脚本了。<br>第一步设置引用的包和预设参数，我们要对系统文件进行处理需要引用os包，对excel处理可以引用xlrd包</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import os,xlrd</span><br><span class="line"></span><br><span class="line"># 下载xlrd</span><br><span class="line"># pip install xlrd=1.2.0</span><br><span class="line"></span><br><span class="line">listname=[&#x27;公司&#x27;,&#x27;姓名&#x27;,&#x27;单位&#x27;,&#x27;电话号&#x27;] # 数据表头</span><br><span class="line">filename=[] # 文件名列表</span><br><span class="line">result=[] # 结果列表</span><br></pre></td></tr></table></figure>
+<p>第二步遍历py文件所在目录下的所有文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def gci(filepath):</span><br><span class="line">#遍历filepath下所有文件，包括子目录</span><br><span class="line">  files = os.listdir(filepath) # 获取指定路径下的所有文件</span><br><span class="line">  for fi in files:</span><br><span class="line">    if fi.split(&#x27;.&#x27;)[-1]!=&#x27;py&#x27;: # 去除列表中获取的python文件</span><br><span class="line">        fi_d = os.path.join(filepath,fi) # 路径拼接</span><br><span class="line">        filename.append(fi_d.replace(&#x27;\\&#x27;,&#x27;/&#x27;)) # 转换路径内容，转为一致的斜杠</span><br><span class="line"></span><br><span class="line">gci(os.path.dirname(__file__)) # 获取python文件路径</span><br></pre></td></tr></table></figure>
+
+<p>第三步预设数据的格式处理</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def todata(text):</span><br><span class="line">    while True: # 循环</span><br><span class="line">        if text.find(&#x27;  &#x27;) != -1: # 有两个空格则转为一个</span><br><span class="line">            text=text.replace(&#x27;  &#x27;,&#x27; &#x27;)</span><br><span class="line">        elif text[0]==&#x27; &#x27;: # 去掉开头的格子</span><br><span class="line">            text=text[1:-1]</span><br><span class="line">        elif text[-1]==&#x27; &#x27;: # 去掉结尾的格子</span><br><span class="line">            text=text[0:-2] </span><br><span class="line">        else:</span><br><span class="line">            text=text.replace(&#x27; &#x27;,&#x27;,&#x27;) # 空格转为逗号，方便转csv</span><br><span class="line">            text=text.replace(&#x27;\n&#x27;,&#x27;&#x27;) # 去掉换行</span><br><span class="line">            text=text.replace(listname[0]+&#x27;：&#x27;,&#x27;&#x27;) # 去掉数据标题</span><br><span class="line">            text=text.replace(listname[1]+&#x27;：&#x27;,&#x27;&#x27;)</span><br><span class="line">            text=text.replace(listname[2]+&#x27;：&#x27;,&#x27;&#x27;)</span><br><span class="line">            text=text.replace(listname[3]+&#x27;：&#x27;,&#x27;&#x27;)</span><br><span class="line">            return text</span><br></pre></td></tr></table></figure>
+<p>第四步遍历所有的excel获取数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 循环获取excel中的sheet页数据</span><br><span class="line"></span><br><span class="line">for filepath in filename:</span><br><span class="line">    xl = xlrd.open_workbook(filepath) # 打开文件</span><br><span class="line">    for i in range(len(xl.sheet_names())):</span><br><span class="line">        table1 = xl.sheets()[i] # 打开sheet页</span><br><span class="line">        try:</span><br><span class="line">            temp_data=table1.row_values(1, start_colx=0, end_colx=None)[0] # 获取第二行数据并取第一个格子数据</span><br><span class="line">        except:</span><br><span class="line">            continue</span><br><span class="line">        if temp_data == &#x27;&#x27;: # 如果为空则跳过该sheet页</span><br><span class="line">            continue</span><br><span class="line">        # 查询数据中是否存在listname的内容，有一个不存在则跳过</span><br><span class="line">        if temp_data.find(listname[0]) == -1 or temp_data.find(listname[1]) == -1 or temp_data.find(listname[2]) == -1 or temp_data.find(listname[3]) == -1:</span><br><span class="line">            continue</span><br><span class="line">        if todata(temp_data) in result: # 数据格式转换，自定义函数</span><br><span class="line">            continue</span><br><span class="line">        else:</span><br><span class="line">            result.append(todata(temp_data)) # 转换后的数据插入到结果列表中</span><br></pre></td></tr></table></figure>
+<p>第五步结果写入到指定文件中</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 数据写入csv文件</span><br><span class="line">f=open(os.path.dirname(__file__)+&#x27;/result.csv&#x27;,&#x27;w&#x27;,encoding=&#x27;gbk&#x27;)</span><br><span class="line">for rdata in result:</span><br><span class="line">    f.write(rdata+&#x27;\n&#x27;)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<p>最后执行脚本，将执行的结果自己手动加了一个表头，如下图。（数据皆为随机造数，并不代表真实数据）</p>
+<p>将数据进行一个统计，能够更好的反映出各组提交状态：<br><img src="/img/uploads/2022/06/3005135622.png"></p>
+<p>从需求的梳理到逻辑的实现再到图片的展示，总计一个小时左右，用一个小时来解决1000+的excel文件的处理，您觉得是否合适呢？</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>excel</tag>
       </tags>
   </entry>
 </search>

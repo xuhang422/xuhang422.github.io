@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>通过python实现办公自动化 | 进阶笔记</title><meta name="keywords" content="python,excel"><meta name="author" content="枫语咒,xuhang@yonghongtech.com"><meta name="copyright" content="枫语咒"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="要说在工作中最让人头疼的就是用同样的方式处理一堆文件夹中文件，这并不难，但就是繁。所以在遇到机械式的操作时一定要记得使用Python来合理偷懒！ 最近朋友找到我想对1000+的excel文件获取其中的一部分数据进行获取和整理。 首先，我先对他的需求做了一个简单的询问，内容包括获取数据的格式是否一致、数据所在位置是否一直、获取数据的逻辑是否一致，以及从他那里获取到一个标准数据的样式。沟通下来他想处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过python实现办公自动化">
+<meta property="og:url" content="https://xuhang422.github.io/2022/06/16/%E9%80%9A%E8%BF%87python%E5%AE%9E%E7%8E%B0%E5%8A%9E%E5%85%AC%E8%87%AA%E5%8A%A8%E5%8C%96/index.html">
+<meta property="og:site_name" content="进阶笔记">
+<meta property="og:description" content="要说在工作中最让人头疼的就是用同样的方式处理一堆文件夹中文件，这并不难，但就是繁。所以在遇到机械式的操作时一定要记得使用Python来合理偷懒！ 最近朋友找到我想对1000+的excel文件获取其中的一部分数据进行获取和整理。 首先，我先对他的需求做了一个简单的询问，内容包括获取数据的格式是否一致、数据所在位置是否一直、获取数据的逻辑是否一致，以及从他那里获取到一个标准数据的样式。沟通下来他想处理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xuhang422.github.io/img/background/20.jpg">
+<meta property="article:published_time" content="2022-06-16T08:12:00.000Z">
+<meta property="article:modified_time" content="2022-09-29T10:32:40.176Z">
+<meta property="article:author" content="枫语咒">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="excel">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xuhang422.github.io/img/background/20.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://xuhang422.github.io/2022/06/16/%E9%80%9A%E8%BF%87python%E5%AE%9E%E7%8E%B0%E5%8A%9E%E5%85%AC%E8%87%AA%E5%8A%A8%E5%8C%96/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '通过python实现办公自动化',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-09-29 18:32:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head3.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">52</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/background/19.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">进阶笔记</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">通过python实现办公自动化</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-06-16T08:12:00.000Z" title="发表于 2022-06-16 16:12:00">2022-06-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-29T10:32:40.176Z" title="更新于 2022-09-29 18:32:40">2022-09-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="通过python实现办公自动化"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>要说在工作中最让人头疼的就是用同样的方式处理一堆文件夹中文件，这并不难，但就是繁。所以在遇到机械式的操作时一定要记得使用Python来合理偷懒！</p>
+<p>最近朋友找到我想对1000+的excel文件获取其中的一部分数据进行获取和整理。</p>
+<p>首先，我先对他的需求做了一个简单的询问，内容包括获取数据的格式是否一致、数据所在位置是否一直、获取数据的逻辑是否一致，以及从他那里获取到一个标准数据的样式。<br>沟通下来他想处理的数据大概长这样：<br><img src="/img/uploads/2022/06/1594733782.png"></p>
+<p>他想获取的只是第二行数据中的公司、姓名、组别、电话号整合到一个文件中生成对应的四个列，这个过程中提到了一个比较特殊的点，这个信息有可能在sheet1中也有可能在sheet2中，也可能都存在，这个时候我就想一定要遍历sheet页。如果都存在的时候数据也是相同的，但只需要获取其中一条，并且最终的结果数据一定是没有重复的，那么在做的时候就要考虑判断是否存在重复数据了。</p>
+<p>现在需求确定了，我们就要考虑脚本如何运行了，首先我们要获取excel所在文件夹，然后遍历这个文件夹中的所有excel文件，再依次遍历文件中的sheet页获取指定位置的数据，最后对数据进行格式的处理存到我们指定的文件中。这个过程就是一个简单的ETL（Extraction-Transformation-Loading）过程。<br><img src="/img/uploads/2022/06/3789569631.png"></p>
+<p>确定了逻辑后我们就可以开始编写我们想要的脚本了。<br>第一步设置引用的包和预设参数，我们要对系统文件进行处理需要引用os包，对excel处理可以引用xlrd包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import os,xlrd</span><br><span class="line"></span><br><span class="line"># 下载xlrd</span><br><span class="line"># pip install xlrd=1.2.0</span><br><span class="line"></span><br><span class="line">listname=[&#x27;公司&#x27;,&#x27;姓名&#x27;,&#x27;单位&#x27;,&#x27;电话号&#x27;] # 数据表头</span><br><span class="line">filename=[] # 文件名列表</span><br><span class="line">result=[] # 结果列表</span><br></pre></td></tr></table></figure>
+<p>第二步遍历py文件所在目录下的所有文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def gci(filepath):</span><br><span class="line">#遍历filepath下所有文件，包括子目录</span><br><span class="line">  files = os.listdir(filepath) # 获取指定路径下的所有文件</span><br><span class="line">  for fi in files:</span><br><span class="line">    if fi.split(&#x27;.&#x27;)[-1]!=&#x27;py&#x27;: # 去除列表中获取的python文件</span><br><span class="line">        fi_d = os.path.join(filepath,fi) # 路径拼接</span><br><span class="line">        filename.append(fi_d.replace(&#x27;\\&#x27;,&#x27;/&#x27;)) # 转换路径内容，转为一致的斜杠</span><br><span class="line"></span><br><span class="line">gci(os.path.dirname(__file__)) # 获取python文件路径</span><br></pre></td></tr></table></figure>
+
+<p>第三步预设数据的格式处理</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def todata(text):</span><br><span class="line">    while True: # 循环</span><br><span class="line">        if text.find(&#x27;  &#x27;) != -1: # 有两个空格则转为一个</span><br><span class="line">            text=text.replace(&#x27;  &#x27;,&#x27; &#x27;)</span><br><span class="line">        elif text[0]==&#x27; &#x27;: # 去掉开头的格子</span><br><span class="line">            text=text[1:-1]</span><br><span class="line">        elif text[-1]==&#x27; &#x27;: # 去掉结尾的格子</span><br><span class="line">            text=text[0:-2] </span><br><span class="line">        else:</span><br><span class="line">            text=text.replace(&#x27; &#x27;,&#x27;,&#x27;) # 空格转为逗号，方便转csv</span><br><span class="line">            text=text.replace(&#x27;\n&#x27;,&#x27;&#x27;) # 去掉换行</span><br><span class="line">            text=text.replace(listname[0]+&#x27;：&#x27;,&#x27;&#x27;) # 去掉数据标题</span><br><span class="line">            text=text.replace(listname[1]+&#x27;：&#x27;,&#x27;&#x27;)</span><br><span class="line">            text=text.replace(listname[2]+&#x27;：&#x27;,&#x27;&#x27;)</span><br><span class="line">            text=text.replace(listname[3]+&#x27;：&#x27;,&#x27;&#x27;)</span><br><span class="line">            return text</span><br></pre></td></tr></table></figure>
+<p>第四步遍历所有的excel获取数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 循环获取excel中的sheet页数据</span><br><span class="line"></span><br><span class="line">for filepath in filename:</span><br><span class="line">    xl = xlrd.open_workbook(filepath) # 打开文件</span><br><span class="line">    for i in range(len(xl.sheet_names())):</span><br><span class="line">        table1 = xl.sheets()[i] # 打开sheet页</span><br><span class="line">        try:</span><br><span class="line">            temp_data=table1.row_values(1, start_colx=0, end_colx=None)[0] # 获取第二行数据并取第一个格子数据</span><br><span class="line">        except:</span><br><span class="line">            continue</span><br><span class="line">        if temp_data == &#x27;&#x27;: # 如果为空则跳过该sheet页</span><br><span class="line">            continue</span><br><span class="line">        # 查询数据中是否存在listname的内容，有一个不存在则跳过</span><br><span class="line">        if temp_data.find(listname[0]) == -1 or temp_data.find(listname[1]) == -1 or temp_data.find(listname[2]) == -1 or temp_data.find(listname[3]) == -1:</span><br><span class="line">            continue</span><br><span class="line">        if todata(temp_data) in result: # 数据格式转换，自定义函数</span><br><span class="line">            continue</span><br><span class="line">        else:</span><br><span class="line">            result.append(todata(temp_data)) # 转换后的数据插入到结果列表中</span><br></pre></td></tr></table></figure>
+<p>第五步结果写入到指定文件中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 数据写入csv文件</span><br><span class="line">f=open(os.path.dirname(__file__)+&#x27;/result.csv&#x27;,&#x27;w&#x27;,encoding=&#x27;gbk&#x27;)</span><br><span class="line">for rdata in result:</span><br><span class="line">    f.write(rdata+&#x27;\n&#x27;)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<p>最后执行脚本，将执行的结果自己手动加了一个表头，如下图。（数据皆为随机造数，并不代表真实数据）</p>
+<p>将数据进行一个统计，能够更好的反映出各组提交状态：<br><img src="/img/uploads/2022/06/3005135622.png"></p>
+<p>从需求的梳理到逻辑的实现再到图片的展示，总计一个小时左右，用一个小时来解决1000+的excel文件的处理，您觉得是否合适呢？</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:xuhang@yonghongtech.com">枫语咒</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xuhang422.github.io/2022/06/16/%E9%80%9A%E8%BF%87python%E5%AE%9E%E7%8E%B0%E5%8A%9E%E5%85%AC%E8%87%AA%E5%8A%A8%E5%8C%96/">https://xuhang422.github.io/2022/06/16/%E9%80%9A%E8%BF%87python%E5%AE%9E%E7%8E%B0%E5%8A%9E%E5%85%AC%E8%87%AA%E5%8A%A8%E5%8C%96/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://xuhang422.github.io" target="_blank">进阶笔记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/excel/">excel</a></div><div class="post_share"></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/10/16/Flask%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%9E%8B/" title="Flask数据库模型"><img class="cover" src="/img/background/15.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-16</div><div class="title">Flask数据库模型</div></div></a></div><div><a href="/2020/10/19/Python_pymysql%E7%94%A8%E6%B3%95/" title="Python——pymysql用法"><img class="cover" src="/img/background/25.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-19</div><div class="title">Python——pymysql用法</div></div></a></div><div><a href="/2020/10/22/%E7%94%A8flask%E5%AE%9E%E7%8E%B0api/" title="用flask实现api"><img class="cover" src="/img/background/37.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-22</div><div class="title">用flask实现api</div></div></a></div><div><a href="/2020/10/24/python%20%E6%8F%92%E5%85%A5mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E5%90%AB%E6%9C%89%E5%8D%95%E5%BC%95%E5%8F%B7%E6%88%96%E5%8F%8C%E5%BC%95%E5%8F%B7%E6%8A%A5%E9%94%99/" title="python 插入mysql数据库字符串中含有单引号或双引号报错"><img class="cover" src="/img/background/33.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-24</div><div class="title">python 插入mysql数据库字符串中含有单引号或双引号报错</div></div></a></div><div><a href="/2020/10/25/python_pip%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F/" title="python——pip国内镜像"><img class="cover" src="/img/background/47.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-25</div><div class="title">python——pip国内镜像</div></div></a></div><div><a href="/2022/01/18/JSONPath%E7%94%A8%E6%B3%95/" title="JSONPath用法"><img class="cover" src="/img/background/2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-18</div><div class="title">JSONPath用法</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/head3.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">枫语咒</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">52</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xuhang422"><i class="fab fa-github"></i><span>github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:xuhang@yonghongtech.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">学而时习，负梦想前行！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/08/06/js%E5%A4%84%E7%90%86xml%EF%BC%88%E4%B8%8D%E5%90%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%EF%BC%89/" title="js处理xml（不同浏览器兼容）"><img src="/img/background/30.jpg" onerror="this.onerror=null;this.src='/img/27.jpg'" alt="js处理xml（不同浏览器兼容）"/></a><div class="content"><a class="title" href="/2022/08/06/js%E5%A4%84%E7%90%86xml%EF%BC%88%E4%B8%8D%E5%90%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%EF%BC%89/" title="js处理xml（不同浏览器兼容）">js处理xml（不同浏览器兼容）</a><time datetime="2022-08-06T03:14:00.000Z" title="发表于 2022-08-06 11:14:00">2022-08-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/12/k8s%E9%85%8D%E7%BD%AEmaster%E8%BF%90%E8%A1%8Cpod/" title="k8s配置master运行pod"><img src="/img/background/28.jpg" onerror="this.onerror=null;this.src='/img/27.jpg'" alt="k8s配置master运行pod"/></a><div class="content"><a class="title" href="/2022/07/12/k8s%E9%85%8D%E7%BD%AEmaster%E8%BF%90%E8%A1%8Cpod/" title="k8s配置master运行pod">k8s配置master运行pod</a><time datetime="2022-07-12T03:56:00.000Z" title="发表于 2022-07-12 11:56:00">2022-07-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/27/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B920220627/" title="待办事项"><img src="/img/background/26.jpg" onerror="this.onerror=null;this.src='/img/27.jpg'" alt="待办事项"/></a><div class="content"><a class="title" href="/2022/06/27/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B920220627/" title="待办事项">待办事项</a><time datetime="2022-06-27T09:52:00.000Z" title="发表于 2022-06-27 17:52:00">2022-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/17/centos%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/" title="centos开机自启"><img src="/img/background/24.jpg" onerror="this.onerror=null;this.src='/img/27.jpg'" alt="centos开机自启"/></a><div class="content"><a class="title" href="/2022/06/17/centos%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF/" title="centos开机自启">centos开机自启</a><time datetime="2022-06-17T05:13:00.000Z" title="发表于 2022-06-17 13:13:00">2022-06-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/17/dockerfile%E6%89%93%E5%8C%85%E9%95%9C%E5%83%8F/" title="dockerfile打包镜像"><img src="/img/background/22.jpg" onerror="this.onerror=null;this.src='/img/27.jpg'" alt="dockerfile打包镜像"/></a><div class="content"><a class="title" href="/2022/06/17/dockerfile%E6%89%93%E5%8C%85%E9%95%9C%E5%83%8F/" title="dockerfile打包镜像">dockerfile打包镜像</a><time datetime="2022-06-17T04:45:00.000Z" title="发表于 2022-06-17 12:45:00">2022-06-17</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/background/19.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By 枫语咒</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">search.title</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  search.load_data</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="search.local_search.input_placeholder" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
